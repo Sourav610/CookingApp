@@ -9,11 +9,13 @@ import { RecipeItemComponent } from "./recipes/recipe-list/recipe-item/recipe-it
 import { RecipeListComponent } from "./recipes/recipe-list/recipe-list.component";
 import { ShoppingEditComponent } from "./shopping-list/shopping-edit/shopping-edit.component";
 import { CommonModule } from "@angular/common";
+import { DropdownDirective } from "./shared/dropdown.directive";
 
 
 @NgModule({
     declarations:[AppComponent,HeaderComponent,RecipesComponent,
-    RecipeDetailComponent,RecipeItemComponent,RecipeListComponent,ShoppingListComponent,ShoppingEditComponent],
+    RecipeDetailComponent,RecipeItemComponent,RecipeListComponent,ShoppingListComponent,
+    ShoppingEditComponent,DropdownDirective],
     imports:[BrowserModule,CommonModule],
     bootstrap:[AppComponent]
 })
