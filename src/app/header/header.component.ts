@@ -7,8 +7,8 @@ import { Component,EventEmitter,Output } from "@angular/core";
     styleUrl:"./header.component.css"
 })
 export class HeaderComponent{
-    @Output() element = new EventEmitter<string>();
-    onSelect(feature:string){
-        this.element.emit(feature);
-    }
+    // @Output() element = new EventEmitter<string>();
+    // onSelect(feature:string){
+    //     this.element.emit(feature);
+    // }
 }
