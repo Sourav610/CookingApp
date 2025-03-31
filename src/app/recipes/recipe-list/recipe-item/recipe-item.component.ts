@@ -12,10 +12,10 @@ export class RecipeItemComponent {
   @Input() recipe!: Recipe;
   // @Output() selectedRecipe= new EventEmitter<void>();
 
-  constructor(private recipeService: RecipeService){}
-  onSelectRecipe(){
-    // this.selectedRecipe.emit();
-    this.recipeService.recipeSelected.emit(this.recipe);
-  }
+  // constructor(private recipeService: RecipeService){}
+  // onSelectRecipe(){
+  //   // this.selectedRecipe.emit();
+  //   this.recipeService.recipeSelected.emit(this.recipe);
+  // }
   
 }
