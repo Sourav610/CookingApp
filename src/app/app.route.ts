@@ -6,15 +6,18 @@ import { RecipeListComponent } from "./recipes/recipe-list/recipe-list.component
 import { RecipeItemComponent } from "./recipes/recipe-list/recipe-item/recipe-item.component";
 import { RecipeStartComponent } from "./recipes/recipe-start/recipe-start.component";
 import { RecipeDetailComponent } from "./recipes/recipe-detail/recipe-detail.component";
+import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component";
 
 const appRoutes: Routes =[
     {path:'',redirectTo:'/recipes', pathMatch:'full'}, // pathMatch required because if empty path is present then for every path empty will be
     //present and it will give error.
     {path:'recipes',component:RecipesComponent,children:[
         {path:'',component:RecipeStartComponent},
-        {path:':id',component:RecipeDetailComponent}
+        {path:'new',component:RecipeEditComponent},
+        {path:':id',component:RecipeDetailComponent},
+        {path:':id/edit',component:RecipeEditComponent}
     ]},
-    {path:'shopping-list',component:ShoppingListComponent}
+    {path:'shopping-list',component:ShoppingListComponent},
 ];
 
 @NgModule({

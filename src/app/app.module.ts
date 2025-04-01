@@ -12,12 +12,13 @@ import { CommonModule } from "@angular/common";
 import { DropdownDirective } from "./shared/dropdown.directive";
 import { ShoppingListService } from "./shopping-list/shopping-list.service";
 import { RouterAppComponent } from "./app.route";
+import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component";
 
 
 @NgModule({
     declarations:[AppComponent,HeaderComponent,RecipesComponent,
     RecipeDetailComponent,RecipeItemComponent,RecipeListComponent,ShoppingListComponent,
-    ShoppingEditComponent,DropdownDirective],
+    ShoppingEditComponent,DropdownDirective,RecipeEditComponent],
     imports:[BrowserModule,CommonModule,RouterAppComponent],
     providers:[ShoppingListService],
     bootstrap:[AppComponent]
