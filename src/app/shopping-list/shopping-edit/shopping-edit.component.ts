@@ -1,6 +1,8 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { Ingredient } from '../../shared/ingredient-model';
 import { ShoppingListService } from '../shopping-list.service';
+import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -8,16 +10,42 @@ import { ShoppingListService } from '../shopping-list.service';
   templateUrl: './shopping-edit.component.html',
   styleUrl: './shopping-edit.component.css'
 })
-export class ShoppingEditComponent {
-  @ViewChild('nameInput')nameInputRef!:ElementRef;
-  @ViewChild('amountInput')amountInputRef!:ElementRef;
+export class ShoppingEditComponent implements OnInit, OnDestroy{
+  // @ViewChild('nameInput')nameInputRef!:ElementRef;
+  // @ViewChild('amountInput')amountInputRef!:ElementRef;
+
+  @ViewChild('f') slForm!:NgForm;
+  subscription!: Subscription;
+  editMode=false;
+  editItemIndex!:number;
+  editedItem!: Ingredient;
 
   constructor(private slService:ShoppingListService){}
+  ngOnDestroy(): void {
+   this.subscription.unsubscribe();
+  }
+  ngOnInit(): void {
+    this.subscription = this.slService.startedEditing.subscribe(
+      (index:number)=>{
+        this.editItemIndex= index;
+        this.editMode=true;
+        this.editedItem = this.slService.getIngredient(index);
+        this.slForm.setValue({
+          name:this.editedItem.name,
+          amount:this.editedItem.amount
+        })
+      }
+    );
+  }
   
-  onAddItem(){
-    const ingName = this.nameInputRef.nativeElement.value;
-    const ingAmount = this.amountInputRef.nativeElement.value;
-    const newIngredient = new Ingredient(ingName,ingAmount);
+  
+  onAddItem(form: NgForm){
+    // const ingName = this.nameInputRef.nativeElement.value;
+    // const ingAmount = this.amountInputRef.nativeElement.value;
+    // const newIngredient = new Ingredient(ingName,ingAmount);
+    // this.slService.addIngredient(newIngredient);
+    const value=form.value;
+    const newIngredient = new Ingredient(value.name,value.amount);
     this.slService.addIngredient(newIngredient);
   }
 }
