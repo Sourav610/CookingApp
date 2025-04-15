@@ -21,9 +21,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy{
   editedItem!: Ingredient;
 
   constructor(private slService:ShoppingListService){}
-  ngOnDestroy(): void {
-   this.subscription.unsubscribe();
-  }
+
   ngOnInit(): void {
     this.subscription = this.slService.startedEditing.subscribe(
       (index:number)=>{
@@ -46,6 +44,16 @@ export class ShoppingEditComponent implements OnInit, OnDestroy{
     // this.slService.addIngredient(newIngredient);
     const value=form.value;
     const newIngredient = new Ingredient(value.name,value.amount);
-    this.slService.addIngredient(newIngredient);
+    if(this.editMode){
+      this.slService.updateIngredient(this.editItemIndex,newIngredient);
+    }
+    else{
+      this.slService.addIngredient(newIngredient);
+    }
+    
   }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+   }
 }
