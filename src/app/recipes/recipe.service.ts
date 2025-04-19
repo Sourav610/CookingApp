@@ -8,6 +8,7 @@ import { Subject } from "rxjs";
 export class RecipeService{
     // recipeSelected = new EventEmitter<Recipe>();
     // recipeSelected = new Subject<Recipe>();
+    recipeChanged = new Subject<Recipe[]>();
 
     private recipes: Recipe[] = [
         new Recipe('A Test Recipe', "This is simply a test", "https://cdn.loveandlemons.com/wp-content/uploads/2024/07/ratatouille-recipe.jpg",
@@ -31,5 +32,15 @@ export class RecipeService{
 
     getRecipes(index:number){
         return this.recipes[index];
+    }
+
+    addRecipe(recipe:Recipe){
+        this.recipes.push(recipe);
+        this.recipeChanged.next(this.recipes.slice())
+    }
+
+    updateRecipe(index: number, newRecipe: Recipe){
+        this.recipes[index] = newRecipe;
+        this.recipeChanged.next(this.recipes.slice())
     }
 }
