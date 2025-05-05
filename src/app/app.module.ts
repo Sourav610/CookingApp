@@ -16,12 +16,14 @@ import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RecipeService } from "./recipes/recipe.service";
 import { HttpClientModule } from "@angular/common/http";
+import { AuthComponent } from "./auth/auth.component";
 
 
 @NgModule({
     declarations:[AppComponent,HeaderComponent,RecipesComponent,
     RecipeDetailComponent,RecipeItemComponent,RecipeListComponent,ShoppingListComponent,
-    ShoppingEditComponent,DropdownDirective,RecipeEditComponent],
+    ShoppingEditComponent,DropdownDirective,RecipeEditComponent
+    ,AuthComponent],
     imports:[BrowserModule,CommonModule,
         RouterAppComponent,
         ReactiveFormsModule,
