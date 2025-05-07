@@ -17,13 +17,14 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RecipeService } from "./recipes/recipe.service";
 import { HttpClientModule } from "@angular/common/http";
 import { AuthComponent } from "./auth/auth.component";
+import { LoadingSpinnerComponent } from "./shared/Loading-spinner/Loading-spineer.component";
 
 
 @NgModule({
     declarations:[AppComponent,HeaderComponent,RecipesComponent,
     RecipeDetailComponent,RecipeItemComponent,RecipeListComponent,ShoppingListComponent,
     ShoppingEditComponent,DropdownDirective,RecipeEditComponent
-    ,AuthComponent],
+    ,AuthComponent,LoadingSpinnerComponent],
     imports:[BrowserModule,CommonModule,
         RouterAppComponent,
         ReactiveFormsModule,
