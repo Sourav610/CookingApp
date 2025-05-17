@@ -1,15 +1,19 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError, throwError } from "rxjs";
+import { BehaviorSubject, Subject, catchError, tap, throwError } from "rxjs";
+import { User } from "./user.model";
 
 export interface AuthResponse{
     code:string;
     message:string;
     status:string;
     token:string;
+    expiresIn:string;
 }
 @Injectable({providedIn:'root'})
 export class AuthService{
+    // user = new Subject<User>();
+    user = new BehaviorSubject<User|null>(null);
     constructor(private http: HttpClient){}
 
     signup(email:string, password: string){
@@ -18,15 +22,26 @@ export class AuthService{
             email:email,
             password:password
         }
-        ).pipe(catchError(this.handleError));
+        ).pipe(catchError(this.handleError),tap(resData =>{
+            this.handleAuthentication(email,resData.token,+resData.expiresIn);
+        }));
     }
 
     login(email:string, password:string){
-        return this.http.post<AuthResponse>('',
+        return this.http.post<AuthResponse>('http://localhost:8080/login',
         {
             email:email,
             password:password
-        }).pipe(catchError(this.handleError));;
+        }).pipe(catchError(this.handleError),tap(resData =>{
+            console.log(resData);
+            this.handleAuthentication(email,resData.token,+resData.expiresIn);
+        }));;
+    }
+
+    private handleAuthentication(email:string, token:string,expiresIn:number){
+        const expirationDate = new Date(new Date().getTime() + expiresIn*1000);
+        const user = new User(email,token,expirationDate);
+        this.user.next(user);
     }
 
     private handleError(errorRes: HttpErrorResponse){
