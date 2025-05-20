@@ -20,9 +20,9 @@ export class DataStorageService{
     }
 
      fetchRecipes(){
-            return this.http.get<Recipe[]>(
-                'http://localhost:8080/fetchRecipes'
-            )
+        return this.http.get<Recipe[]>(
+             'http://localhost:8080/fetchRecipes'
+        )
         .pipe(
         map(recipes =>{
             return recipes.map(recipes => {
