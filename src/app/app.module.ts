@@ -19,13 +19,15 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { AuthComponent } from "./auth/auth.component";
 import { LoadingSpinnerComponent } from "./shared/Loading-spinner/Loading-spineer.component";
 import { AuthInterceptorService } from "./auth/auth-interceptor.service";
+import { AlertComponent } from "./shared/alert/alert.component";
 
 
 @NgModule({
     declarations:[AppComponent,HeaderComponent,RecipesComponent,
     RecipeDetailComponent,RecipeItemComponent,RecipeListComponent,ShoppingListComponent,
     ShoppingEditComponent,DropdownDirective,RecipeEditComponent
-    ,AuthComponent,LoadingSpinnerComponent],
+    ,AuthComponent,LoadingSpinnerComponent,
+    AlertComponent],
     imports:[BrowserModule,CommonModule,
         RouterAppComponent,
         ReactiveFormsModule,
