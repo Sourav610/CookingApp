@@ -20,6 +20,7 @@ import { AuthComponent } from "./auth/auth.component";
 import { LoadingSpinnerComponent } from "./shared/Loading-spinner/Loading-spineer.component";
 import { AuthInterceptorService } from "./auth/auth-interceptor.service";
 import { AlertComponent } from "./shared/alert/alert.component";
+import { PlaceholderDirective } from "./shared/placeholder/placeholder.directive";
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { AlertComponent } from "./shared/alert/alert.component";
     RecipeDetailComponent,RecipeItemComponent,RecipeListComponent,ShoppingListComponent,
     ShoppingEditComponent,DropdownDirective,RecipeEditComponent
     ,AuthComponent,LoadingSpinnerComponent,
-    AlertComponent],
+    AlertComponent,PlaceholderDirective],
     imports:[BrowserModule,CommonModule,
         RouterAppComponent,
         ReactiveFormsModule,
