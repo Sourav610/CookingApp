@@ -15,7 +15,8 @@ export class AuthComponent implements OnDestroy{
     isLoginMode = true;
     isLoading= false;
     error: null | string = "";
-    @ViewChild(PlaceholderDirective) alertHost:PlaceholderDirective | undefined;
+    @ViewChild(PlaceholderDirective, { static: false }) 
+    alertHost!:PlaceholderDirective;
     private closeSub!: Subscription; 
 
     constructor(private authService: AuthService,private router:Router,
