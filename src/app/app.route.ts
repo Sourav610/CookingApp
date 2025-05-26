@@ -14,14 +14,15 @@ import { AuthGuard } from "./auth/auth.guard";
 const appRoutes: Routes =[
     {path:'',redirectTo:'/recipes', pathMatch:'full'}, // pathMatch required because if empty path is present then for every path empty will be
     //present and it will give error.
-    {path:'recipes',component:RecipesComponent,
-    canActivate: [AuthGuard],
-    children:[
-        {path:'',component:RecipeStartComponent},
-        {path:'new',component:RecipeEditComponent},
-        {path:':id',component:RecipeDetailComponent,resolve:[RecipeResolverService]},
-        {path:':id/edit',component:RecipeEditComponent}
-    ]},
+    //below routes move to recipe route.
+    // {path:'recipes',component:RecipesComponent,
+    // canActivate: [AuthGuard],
+    // children:[
+    //     {path:'',component:RecipeStartComponent},
+    //     {path:'new',component:RecipeEditComponent},
+    //     {path:':id',component:RecipeDetailComponent,resolve:[RecipeResolverService]},
+    //     {path:':id/edit',component:RecipeEditComponent}
+    // ]},
     {path:'shopping-list',component:ShoppingListComponent},
     {path: 'auth',component:AuthComponent}
 ];
