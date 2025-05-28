@@ -23,8 +23,8 @@ const appRoutes: Routes =[
     //     {path:':id',component:RecipeDetailComponent,resolve:[RecipeResolverService]},
     //     {path:':id/edit',component:RecipeEditComponent}
     // ]},
-    {path:'shopping-list',component:ShoppingListComponent},
-    {path: 'auth',component:AuthComponent}
+    // {path:'shopping-list',component:ShoppingListComponent},
+    // {path: 'auth',component:AuthComponent}
 ];
 
 @NgModule({
