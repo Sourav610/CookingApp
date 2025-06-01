@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Subject, catchError, tap, throwError } from "rxjs";
 import { User } from "./user.model";
 import { Router } from "@angular/router";
+import { environment } from "../../environments/environment";
 
 export interface AuthResponse{
     code:string;
@@ -19,7 +20,7 @@ export class AuthService{
     constructor(private http: HttpClient,private router:Router){}
 
     signup(email:string, password: string){
-        return this.http.post<AuthResponse>('http://localhost:8080/createUser',
+        return this.http.post<AuthResponse>(environment.createUserUrl,
         {
             email:email,
             password:password

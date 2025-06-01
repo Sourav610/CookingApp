@@ -5,12 +5,14 @@ import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { SharedModule } from "../shared/shared.module";
+import { LoggingService } from "../loggin.service";
 
 @NgModule({
     declarations:[ShoppingListComponent,
         ShoppingEditComponent],
     imports:[RouterModule.forChild([
-        {path:'shopping-list',component:ShoppingListComponent},
-    ]),FormsModule,SharedModule]
+        {path:'',component:ShoppingListComponent},
+    ]),FormsModule,SharedModule],
+    // providers:[LoggingService] //for lazyLoading
 })
 export class ShoppingListModule{}
