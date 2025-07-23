@@ -1,8 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Ingredient } from '../shared/ingredient-model';
-import { ShoppingListService } from './shopping-list.service';
-import { Subscription } from 'rxjs';
+// import { ShoppingListService } from './shopping-list.service';
+import { Observable, Subscription } from 'rxjs';
 import { LoggingService } from '../loggin.service';
+import { Store } from '@ngrx/store';
+
+import * as fromShoppingList from './Store/shopping-list.reducer';
+import * as ShoppingListAction from './Store/shopping-list.action';
 
 @Component({
   selector: 'app-shopping-list',
@@ -11,24 +15,30 @@ import { LoggingService } from '../loggin.service';
   styleUrl: './shopping-list.component.css',
 })
 export class ShoppingListComponent implements OnInit,OnDestroy {
-  ingredients!:Ingredient[];
-  private igChangeSub!: Subscription;
+  ingredients!: Observable<{ingredients:Ingredient[]}>;
+  // private igChangeSub!: Subscription;
 
-  constructor(private shoppingList:ShoppingListService, private loggingService:LoggingService){}
+  constructor(
+    // private shoppingList:ShoppingListService,
+     private loggingService:LoggingService,
+     private store:Store<fromShoppingList.AppState>
+     ){}
 
   ngOnDestroy(): void {
-    this.igChangeSub.unsubscribe();
+    // this.igChangeSub.unsubscribe();
   }
   ngOnInit(): void {
-    this.ingredients = this.shoppingList.getIngredients();
-    this.igChangeSub = this.shoppingList.ingredientChanged.subscribe((ingredients:Ingredient[])=>{
-      this.ingredients = ingredients;
-    })
+    this.ingredients= this.store.select('shoppingList');
+    // this.ingredients = this.shoppingList.getIngredients();
+    // this.igChangeSub = this.shoppingList.ingredientChanged.subscribe((ingredients:Ingredient[])=>{
+    //   this.ingredients = ingredients;
+    // })
     this.loggingService.printLog('Hello from shopping list component ngOnInit')
   }
 
   onEditItem(index: number){
-    this.shoppingList.startedEditing.next(index);
+    // this.shoppingList.startedEditing.next(index);
+    this.store.dispatch(new ShoppingListAction.StartEdit(index));
   }
 
 }
