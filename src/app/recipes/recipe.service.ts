@@ -4,8 +4,9 @@ import { Ingredient } from "../shared/ingredient-model";
 // import { ShoppingListService } from "../shopping-list/shopping-list.service";
 import { Subject } from "rxjs";
 import { Store } from "@ngrx/store";
+
 import * as ShoppingListActions from '../shopping-list/Store/shopping-list.action';
-import * as fromShoppingList from '../shopping-list/Store/shopping-list.reducer';
+import * as fromApp from '../store/app.reducer';
 
 
 @Injectable()
@@ -28,7 +29,7 @@ export class RecipeService{
 
     constructor(
         // private slService:ShoppingListService,
-        private store:Store<fromShoppingList.AppState>){}
+        private store:Store<fromApp.AppState>){}
 
     getRecipe(){
         return this.recipes.slice(); //it will give a copy of the recipe
