@@ -12,7 +12,7 @@ import { AuthComponent } from "./auth/auth.component";
 import { AuthGuard } from "./auth/auth.guard";
 
 const appRoutes: Routes =[
-    {path:'',redirectTo:'/recipes', pathMatch:'full'}, // pathMatch required because if empty path is present then for every path empty will be
+    {path:'',redirectTo:'/auth', pathMatch:'full'}, // pathMatch required because if empty path is present then for every path empty will be
     //present and it will give error.
     //below routes move to recipe route.
     // {path:'recipes',component:RecipesComponent,
